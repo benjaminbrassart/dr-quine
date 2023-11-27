@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 06:50:39 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 06:53:58 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ TESTS := $(NAME:%=test_%)
 
 test: $(TESTS)
 
+# required for process substitution <()
 SHELL := bash
 
 $(TESTS): test_%: %
