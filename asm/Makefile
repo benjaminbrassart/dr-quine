@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 12:03:59 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 12:17:49 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,13 +60,13 @@ test: $(TESTS)
 # required for process substitution <()
 SHELL := bash
 
+test_Colleen: Colleen
+	$(eval path := $<)
+	@echo "diff <($(path)) $<.s"
+	@diff --color=auto <($(abspath $(path))) $<.s && echo "OK!"
+
 test_Grace: Grace
 	@$(abspath $<)
 	@echo "diff $<_kid.s $<.s"
 	@diff --color=auto $<_kid.s $<.s && echo "OK!"
 	@rm -f $<_kid.s
-
-test_Colleen test_Sully: test_%: %
-	$(eval path := $<)
-	@echo "diff <($(path)) $<.s"
-	@diff --color=auto <($(abspath $(path))) && echo "OK!" $<.s
