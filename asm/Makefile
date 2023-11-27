@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 12:17:49 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 12:20:09 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
 SRC := Colleen.s
 SRC += Grace.s
-# SRC += Sully.s
+SRC += Sully.s
 
 OBJ := $(SRC:.s=.o)
 NAME := $(OBJ:.o=)
