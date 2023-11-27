@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 07:14:56 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 07:48:59 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,18 @@ TESTS := $(NAME:%=test_%)
 
 test: $(TESTS)
 
+.NOTPARALLEL: test
+
 # required for process substitution <()
 SHELL := bash
 
-$(TESTS): test_%: %
+test_Grace: Grace
+	@$(abspath $<)
+	@echo "diff $<.c $<_kid.c"
+	@diff --color=auto $<.c $<_kid.c && echo "OK!"
+	@rm -f $<_kid.c
+
+test_Colleen test_Sully: test_%: %
 	$(eval path := $<)
 	@echo "diff $<.c <($(path))"
 	@diff --color=auto $<.c <($(abspath $(path))) && echo "OK!"
