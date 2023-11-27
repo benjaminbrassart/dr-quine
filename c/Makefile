@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 08:22:44 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 08:46:05 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,10 @@ $(NAME): %: %.c
 
 .PHONY: clean fclean re
 
-clean fclean:
+clean:
+	@$(RM) Sully_*
+
+fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean
