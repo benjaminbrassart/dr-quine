@@ -6,14 +6,14 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 06:53:58 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 07:14:56 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
 NAME := Colleen
-# NAME += Grace
+NAME += Grace
 # NAME += Sully
 
 CC := clang
@@ -21,12 +21,14 @@ CFLAGS := -Wall -Werror -Wextra
 
 RM := rm -vf
 
+.PHONY: all
+
+all: $(NAME)
+
 $(NAME): %: %.c
 	$(CC) $(CFLAGS) $< -o $@
 
-.PHONY: all clean fclean re
-
-all: $(NAME)
+.PHONY: clean fclean re
 
 clean fclean:
 	@$(RM) $(NAME)
