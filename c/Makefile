@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 07:48:59 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 08:22:44 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
 NAME := Colleen
 NAME += Grace
-# NAME += Sully
+NAME += Sully
 
 CC := clang
 CFLAGS := -Wall -Werror -Wextra
