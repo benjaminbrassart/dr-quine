@@ -8,39 +8,32 @@ extern snprintf, fprintf, fopen, fclose, system
 
 section .text
 main:
-	; not aligned
 	mov qword [i], 5
 	dec qword [i]
 
 	push rbx
-	; aligned
 	call duplicate
 	call compile
 	pop rbx
-	; not aligned
 
 	cmp qword [i], 0
 	je .return
 
 	push rbx
-	; aligned
 	call run
 	pop rbx
-	; not aligned
 
 .return:
 	mov rax, 0
 	ret
 
 duplicate:
-	; not aligned
 	mov rdi, buffer
 	mov rsi, BUFFER_SIZE
 	mov rdx, format_source
 	mov rcx, qword [i]
 
 	push rbx
-	; aligned
 	call snprintf
 
 	mov rdi, buffer
@@ -48,13 +41,11 @@ duplicate:
 
 	call fopen
 	pop rbx
-	; not aligned
 
 	cmp rax, 0
 	je error
 
 	push rax
-	; aligned
 
 	mov rdi, rax
 	mov rsi, src
@@ -63,20 +54,16 @@ duplicate:
 	mov r8, 34
 	mov r9, src
 	push qword [i]
-	; not aligned
 
 	push rbx
-	; aligned
 	call fprintf
 	pop rbx
-	; not aligned
 
+	pop rax ; push qword [i]
 	pop rdi
-	; aligned
+	mov rdi, rdi
 
-	push rbx
 	call fclose
-	pop rbx
 	ret
 
 compile: ; TODO
