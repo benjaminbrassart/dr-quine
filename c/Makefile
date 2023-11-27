@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 08:46:05 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 12:15:34 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ fclean: clean
 re: fclean
 	@$(MAKE) -f $(MAKEFILE) all
 
-TESTS := $(NAME:%=test_%)
+TESTS := test_Colleen test_Grace
 
 .PHONY: test $(TESTS)
 
@@ -50,13 +50,13 @@ test: $(TESTS)
 # required for process substitution <()
 SHELL := bash
 
+test_Colleen: test_%: %
+	$(eval path := $<)
+	@echo "diff <($(path)) $<.c"
+	@diff --color=auto <($(abspath $(path))) $<.c && echo "OK!"
+
 test_Grace: Grace
 	@$(abspath $<)
-	@echo "diff $<.c $<_kid.c"
-	@diff --color=auto $<.c $<_kid.c && echo "OK!"
+	@echo "diff $<_kid.c $<.c"
+	@diff --color=auto $<_kid.c $<.c && echo "OK!"
 	@rm -f $<_kid.c
-
-test_Colleen test_Sully: test_%: %
-	$(eval path := $<)
-	@echo "diff $<.c <($(path))"
-	@diff --color=auto $<.c <($(abspath $(path))) && echo "OK!"
