@@ -66,10 +66,32 @@ duplicate:
 	call fclose
 	ret
 
-compile: ; TODO
+compile:
+	mov rdi, buffer
+	mov rsi, BUFFER_SIZE
+	mov rdx, format_compile
+	mov rcx, qword [i]
+
+	push rbx
+	call snprintf
+	mov rdi, buffer
+	call system
+	jnz error
+	pop rbx
 	ret
 
-run: ; TODO
+run:
+	mov rdi, buffer
+	mov rsi, BUFFER_SIZE
+	mov rdx, format_run
+	mov rcx, qword [i]
+
+	push rbx
+	call snprintf
+	mov rdi, buffer
+	call system
+	jnz error
+	pop rbx
 	ret
 
 error: ; sys_exit(1)
@@ -84,6 +106,6 @@ i: resq 1
 section .data
 open_mode: db "w", 0
 format_run: db "./Sully_%d", 0
-format_compile: db "nasm -f elf64 Sully_%1$d.s -o Sully_%1$d", 0
+format_compile: db "tmp=$(mktemp) && nasm -f elf64 Sully_%1$d.s -o $tmp && gcc $tmp -o Sully_%1$d -lc && rm -f $tmp", 0
 format_source: db "Sully_%d.s", 0
-src: db "section .bss%1$cbuffer:%1$c%2$cresb 256%1$c%1$csection .data%1$ci:%1$c%2$cdq %6$lld%1$csrc:%1$c%2$cdb %3$c%4$s%3$c, 0%1$c", 0
+src: db "global main:%1$cmain: ret", 0
