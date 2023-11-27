@@ -6,14 +6,14 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 10:02:47 by bbrassar         ###   ########.fr        #
+#    Updated: 2023/11/27 12:03:59 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAKEFILE := $(lastword $(MAKEFILE_LIST))
 
 SRC := Colleen.s
-# SRC += Grace.s
+SRC += Grace.s
 # SRC += Sully.s
 
 OBJ := $(SRC:.s=.o)
@@ -21,7 +21,7 @@ NAME := $(OBJ:.o=)
 
 AS := nasm
 ASFLAGS := -Wall -Werror
-ASFLAGS := -f elf64
+ASFLAGS := -f elf64 -g
 
 LD := clang
 LDFLAGS := -lc
@@ -62,11 +62,11 @@ SHELL := bash
 
 test_Grace: Grace
 	@$(abspath $<)
-	@echo "diff $<.s $<_kid.s"
-	@diff --color=auto $<.s $<_kid.s && echo "OK!"
+	@echo "diff $<_kid.s $<.s"
+	@diff --color=auto $<_kid.s $<.s && echo "OK!"
 	@rm -f $<_kid.s
 
 test_Colleen test_Sully: test_%: %
 	$(eval path := $<)
-	@echo "diff $<.s <($(path))"
-	@diff --color=auto $<.s <($(abspath $(path))) && echo "OK!"
+	@echo "diff <($(path)) $<.s"
+	@diff --color=auto <($(abspath $(path))) && echo "OK!" $<.s
