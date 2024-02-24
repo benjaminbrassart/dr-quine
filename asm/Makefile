@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 06:07:36 by bbrassar          #+#    #+#              #
-#    Updated: 2023/11/27 12:20:09 by bbrassar         ###   ########.fr        #
+#    Updated: 2024/02/24 18:45:35 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ASFLAGS := -Wall -Werror
 ASFLAGS := -f elf64 -g
 
 LD := clang
-LDFLAGS := -lc
+LDFLAGS := -lc -no-pie
 
 RM := rm -vf
 
