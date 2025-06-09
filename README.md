@@ -3,13 +3,11 @@
 Quines at 42 Paris.
 The mandatory part requires C (and optionally, assembly).
 The bonus part requires another language of our choice.
-I chose Python 3 and Perl 5 for the bonus part (cuz why not).
+I chose Perl 5 for the bonus part.
 
 ---
 
 ### Quines?
-That's a great question, me who's writing this readme right now!
-
 A quine is a program that outputs its own source code.
 That's it.
 Reading the source code (either at compile time or an runtime) is considered cheating.
