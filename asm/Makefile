@@ -24,7 +24,7 @@ ASFLAGS := -Wall -Werror
 ASFLAGS := -f elf64 -g
 
 LD := clang
-LDFLAGS := -lc -no-pie
+LDFLAGS := -no-pie
 
 RM := rm -vf
 
