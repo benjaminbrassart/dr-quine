@@ -11,7 +11,6 @@ main:
 	cmp qword [i], -1
 	jle .return
 
-.duplicate:
 	add rsp, -8
 		mov rdi, buffer
 		mov rsi, BUFFER_SIZE
